@@ -1,3 +1,4 @@
+// Sprint1 原始代码完整备份，Sprint2重构前快照
 package com.iwillrecitewords;
 
 import com.iwillrecitewords.service.StudyStatService;
@@ -35,7 +36,6 @@ public class MainUI extends Application {
 
         // 3. 【关键】强制取消全屏/最大化，启动时就是合适的窗口大小
         primaryStage.setMaximized(false);
-
         // 启动主页面
         HomeView homeView = new HomeView(primaryStage);
         primaryStage.setScene(homeView.getScene());
