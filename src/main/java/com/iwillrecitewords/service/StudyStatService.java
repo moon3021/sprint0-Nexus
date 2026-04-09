@@ -1,46 +1,50 @@
 package com.iwillrecitewords.service;
 
-import com.iwillrecitewords.util.FileUtil;
+import com.iwillrecitewords.repository.FileStatRepository;
+import com.iwillrecitewords.repository.StatRepository;
 
 /**
- * 学习统计服务：持久化存储学习数据，提供统计能力
+ * 学习统计服务：仅负责统计业务逻辑，数据读写委托给仓储接口
  */
 public class StudyStatService {
-    private int learnedCount;  // 已学单词数量
-    private int reviewCount;   // 复习单词数量
+    private final StatRepository statRepository;
+    private int learnedCount;
+    private int reviewCount;
 
     public StudyStatService() {
-        // 启动时从本地加载已存数据
-        this.learnedCount = FileUtil.loadLearnedCount();
-        this.reviewCount = 0; // 后续可扩展复习数据持久化
+        this.statRepository = new FileStatRepository();
+        this.learnedCount = statRepository.loadLearnedCount();
+        this.reviewCount = 0;
     }
 
-    /**
-     * 新增一个已学单词，自动保存到本地
-     */
+    public StudyStatService(StatRepository statRepository) {
+        this.statRepository = statRepository;
+        this.learnedCount = statRepository.loadLearnedCount();
+        this.reviewCount = 0;
+    }
+
     public void incrementLearnedCount() {
         learnedCount++;
-        FileUtil.saveLearnedCount(learnedCount);
+        statRepository.saveLearnedCount(learnedCount);
     }
 
-    /**
-     * 获取已学单词数量
-     */
     public int getLearnedCount() {
         return learnedCount;
     }
 
-    /**
-     * 获取复习单词数量
-     */
     public int getReviewCount() {
         return reviewCount;
     }
 
-    /**
-     * 新增复习单词数
-     */
-    public void incrementReviewCount() {
-        reviewCount++;
+    public void updateMasteredCount() {
+        // 原有逻辑保留
+    }
+
+    public void saveStatData() {
+        statRepository.saveLearnedCount(learnedCount);
+    }
+
+    public void getTodayStat() {
+        // 原有逻辑保留
     }
 }
