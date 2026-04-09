@@ -1,6 +1,7 @@
+// Sprint1 原始代码完整备份，Sprint2重构前快照
 package com.iwillrecitewords.view;
 
-import com.iwillrecitewords.MainUI;
+import com.iwillrecitewords.controller.LearnController;
 import com.iwillrecitewords.model.Word;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,13 +15,13 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * 纯净背单词页面：适配电脑宽屏，优化交互体验
+ * 纯净背单词页面：仅负责UI渲染，业务逻辑全部委托给LearnController
  */
 public class LearnView {
     private final Stage stage;
-    private Word currentWord;
+    private final LearnController controller; // 持有Controller引用，只调用Controller方法
 
-    // UI组件
+    // UI组件（仅保留UI相关）
     private Label wordLabel;
     private Label phoneticLabel;
     private Label meaningLabel;
@@ -28,18 +29,18 @@ public class LearnView {
     private Label exampleCnLabel;
     private Label learnedCountLabel;
 
+    // 构造函数
     public LearnView(Stage stage) {
         this.stage = stage;
-        // 初始化第一个单词
-        this.currentWord = MainUI.WORD_SERVICE.getRandomWord();
-        MainUI.STAT_SERVICE.incrementLearnedCount();
+        // 初始化Controller，把自己传给Controller
+        this.controller = new LearnController(this);
     }
 
     public Scene getScene() {
-        // 根布局：BorderPane适配宽屏，纯净无干扰
+        // 根布局：BorderPane适配宽屏
         BorderPane root = new BorderPane();
         root.setBackground(new Background(new BackgroundFill(
-                Color.rgb(255, 248, 245), // 超柔和护眼底色，专注学习
+                Color.rgb(255, 248, 245),
                 CornerRadii.EMPTY,
                 Insets.EMPTY
         )));
@@ -57,28 +58,29 @@ public class LearnView {
         backBtn.setTextFill(Color.rgb(100, 100, 100));
         backBtn.setCursor(javafx.scene.Cursor.HAND);
         backBtn.setOnAction(e -> {
-            // 返回主页面，刷新统计数据
+            // 返回主页面（UI跳转，无业务逻辑）
             HomeView homeView = new HomeView(stage);
             stage.setScene(homeView.getScene());
         });
 
-        // 已学数量统计
-        learnedCountLabel = new Label("📚 今日已学：" + MainUI.STAT_SERVICE.getLearnedCount() + " 词");
+        // 已学数量统计（从Controller获取数据）
+        learnedCountLabel = new Label("📚 今日已学：" + controller.getLearnedCount() + " 词");
         learnedCountLabel.setFont(Font.font(18));
         learnedCountLabel.setTextFill(Color.rgb(120, 120, 120));
 
-        // 占位弹簧，把统计推到右边
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-
         topBar.getChildren().addAll(backBtn, spacer, learnedCountLabel);
         root.setTop(topBar);
 
-        // ====================== 中间：单词核心内容（纯净学习区） ======================
+        // ====================== 中间：单词核心内容 ======================
         VBox wordContent = new VBox(40);
         wordContent.setAlignment(Pos.CENTER);
         wordContent.setPadding(new Insets(40, 100, 40, 100));
-        wordContent.setMaxWidth(800); // 限制内容宽度，避免宽屏太分散
+        wordContent.setMaxWidth(800);
+
+        // 从Controller获取当前单词，初始化UI
+        Word currentWord = controller.getCurrentWord();
 
         // 单词主体
         wordLabel = new Label(currentWord.getWord());
@@ -90,11 +92,8 @@ public class LearnView {
         phoneticLabel.setFont(Font.font(32));
         phoneticLabel.setTextFill(Color.rgb(80, 80, 80));
 
-        // 词性+释义
-        String posMeaning = currentWord.getPartOfSpeech().isEmpty()
-                ? currentWord.getMeaning()
-                : currentWord.getPartOfSpeech() + " " + currentWord.getMeaning();
-        meaningLabel = new Label(posMeaning);
+        // 词性+释义（从Controller获取拼接好的内容）
+        meaningLabel = new Label(controller.getPosAndMeaning(currentWord));
         meaningLabel.setFont(Font.font(32));
         meaningLabel.setTextFill(Color.rgb(50, 50, 50));
         meaningLabel.setWrapText(true);
@@ -114,8 +113,6 @@ public class LearnView {
         exampleCnLabel.setWrapText(true);
 
         exampleBox.getChildren().addAll(exampleEnLabel, exampleCnLabel);
-
-        // 把所有内容加入容器
         wordContent.getChildren().addAll(wordLabel, phoneticLabel, meaningLabel, exampleBox);
         root.setCenter(wordContent);
 
@@ -135,10 +132,8 @@ public class LearnView {
         )));
         wrongBtn.setPrefSize(200, 80);
         wrongBtn.setCursor(javafx.scene.Cursor.HAND);
-        wrongBtn.setOnAction(e -> {
-            // 后续可扩展：加入错词本
-            loadNextWord();
-        });
+        // 按钮点击只调用Controller方法，无业务逻辑
+        wrongBtn.setOnAction(e -> controller.handleWrongButtonClick());
 
         // 继续按钮
         Button nextBtn = new Button("认识，下一个");
@@ -151,7 +146,8 @@ public class LearnView {
         )));
         nextBtn.setPrefSize(280, 80);
         nextBtn.setCursor(javafx.scene.Cursor.HAND);
-        nextBtn.setOnAction(e -> loadNextWord());
+        // 按钮点击只调用Controller方法，无业务逻辑
+        nextBtn.setOnAction(e -> controller.handleKnowButtonClick());
 
         bottomBtnBox.getChildren().addAll(wrongBtn, nextBtn);
         root.setBottom(bottomBtnBox);
@@ -159,28 +155,22 @@ public class LearnView {
         return new Scene(root);
     }
 
+    // ====================== 暴露给Controller调用的UI更新方法 ======================
     /**
-     * 加载下一个单词，更新UI
+     * 更新单词相关的UI（给Controller调用）
      */
-    private void loadNextWord() {
-        // 获取新单词
-        this.currentWord = MainUI.WORD_SERVICE.getRandomWord();
-        // 统计+1
-        MainUI.STAT_SERVICE.incrementLearnedCount();
+    public void updateWordUI(Word word) {
+        wordLabel.setText(word.getWord());
+        phoneticLabel.setText(word.getPhonetic().isEmpty() ? "" : word.getPhonetic());
+        meaningLabel.setText(controller.getPosAndMeaning(word));
+        exampleEnLabel.setText(word.getExampleEn().isEmpty() ? "" : word.getExampleEn());
+        exampleCnLabel.setText(word.getExampleCn().isEmpty() ? "" : word.getExampleCn());
+    }
 
-        // 更新UI内容
-        wordLabel.setText(currentWord.getWord());
-        phoneticLabel.setText(currentWord.getPhonetic().isEmpty() ? "" : currentWord.getPhonetic());
-
-        String posMeaning = currentWord.getPartOfSpeech().isEmpty()
-                ? currentWord.getMeaning()
-                : currentWord.getPartOfSpeech() + " " + currentWord.getMeaning();
-        meaningLabel.setText(posMeaning);
-
-        exampleEnLabel.setText(currentWord.getExampleEn().isEmpty() ? "" : currentWord.getExampleEn());
-        exampleCnLabel.setText(currentWord.getExampleCn().isEmpty() ? "" : currentWord.getExampleCn());
-
-        // 更新已学数量
-        learnedCountLabel.setText("📚 今日已学：" + MainUI.STAT_SERVICE.getLearnedCount() + " 词");
+    /**
+     * 更新已学数量的UI（给Controller调用）
+     */
+    public void updateLearnedCountUI() {
+        learnedCountLabel.setText("📚 今日已学：" + controller.getLearnedCount() + " 词");
     }
 }

@@ -19,6 +19,10 @@ public class Word {
         this.exampleEn = exampleEn;
         this.exampleCn = exampleCn;
     }
+    public boolean isValid(){
+        return word != null && !word.isBlank()
+                && meaning != null && !meaning.isBlank();
+    }
 
     // Getter 方法
     public String getWord() { return word; }

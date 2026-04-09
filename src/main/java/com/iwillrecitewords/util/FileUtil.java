@@ -89,7 +89,78 @@ public class FileUtil {
 
         return wordList;
     }
+    /**
+     * 读取文件内容
+     * @param filePath 文件路径
+     * @return 文件内容字符串，文件不存在/读取失败返回空字符串
+     */
+    public static String readFile(String filePath) {
+        File file = new File(filePath);
+        // 文件不存在，先创建空文件
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "";
+            }
+        }
+        // 读取文件内容
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
 
+    /**
+     * 写入内容到文件
+     * @param filePath 文件路径
+     * @param content 要写入的内容
+     */
+    public static void writeFile(String filePath, String content) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), StandardCharsets.UTF_8))) {
+            bw.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 解析文本内容为单词列表
+     * @param content 词库文本内容，一行一个单词，制表符分隔
+     * @return 解析后的单词列表
+     */
+    public static List<Word> parseWordList(String content) {
+        List<Word> wordList = new ArrayList<>();
+        if (content == null || content.isBlank()) {
+            return wordList;
+        }
+        // 按行分割，逐行解析
+        String[] lines = content.split("\n");
+        for (String line : lines) {
+            if (line.isBlank()) continue;
+            // 按制表符\t分割，和你的词库格式保持一致
+            String[] parts = line.split("\t");
+            // 确保字段数量足够，避免数组越界
+            if (parts.length < 6) continue;
+            Word word = new Word(
+                    parts[0].trim(), // 单词
+                    parts[1].trim(), // 音标
+                    parts[2].trim(), // 词性
+                    parts[3].trim(), // 释义
+                    parts[4].trim(), // 英文例句
+                    parts[5].trim()  // 中文例句
+            );
+            wordList.add(word);
+        }
+        return wordList;
+    }
     /**
      * 保存已学单词数量到本地（零报错，自动创建目录）
      */

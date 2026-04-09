@@ -1,6 +1,6 @@
 // Sprint1 原始代码完整备份，Sprint2重构前快照
 package com.iwillrecitewords;
-
+import com.iwillrecitewords.service.WrongWordService;
 import com.iwillrecitewords.service.StudyStatService;
 import com.iwillrecitewords.service.WordService;
 import com.iwillrecitewords.view.HomeView;
@@ -14,7 +14,7 @@ public class MainUI extends Application {
     // 全局服务单例，全页面复用
     public static final WordService WORD_SERVICE = new WordService();
     public static final StudyStatService STAT_SERVICE = new StudyStatService();
-
+    public static final WrongWordService WRONG_WORD_SERVICE = new WrongWordService();
     public static void main(String[] args) {
         launch(args);
     }
