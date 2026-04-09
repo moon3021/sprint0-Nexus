@@ -9,7 +9,7 @@ import com.iwillrecitewords.repository.StatRepository;
 public class StudyStatService {
     private final StatRepository statRepository;
     private int learnedCount;
-    private int reviewCount;
+    private final int reviewCount;
 
     public StudyStatService() {
         this.statRepository = new FileStatRepository();

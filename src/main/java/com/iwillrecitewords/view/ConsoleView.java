@@ -1,6 +1,7 @@
 package com.iwillrecitewords.view;
 
 import com.iwillrecitewords.model.Word;
+
 import java.util.Scanner;
 
 /**

@@ -24,15 +24,17 @@ public class FileUtil {
      */
     public static List<Word> loadWordLibrary() {
         List<Word> wordList = new ArrayList<>();
-        // 使用类加载器获取资源流，兼容IDE运行和打包后运行
-        try (InputStream inputStream = FileUtil.class.getClassLoader().getResourceAsStream("Words.txt");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+        // 1. 先获取流，不直接创建Reader
+        InputStream inputStream = FileUtil.class.getClassLoader().getResourceAsStream("Words.txt");
 
-            if (inputStream == null) {
-                System.err.println("❌ 错误：未找到词库文件 Words.txt，请确保文件在 src/main/resources 目录下");
-                return wordList;
-            }
+        // 2. 先判空，修复【空指针逻辑矛盾】警告
+        if (inputStream == null) {
+            System.err.println("❌ 错误：未找到词库文件 Words.txt，请确保文件在 src/main/resources 目录下");
+            return wordList;
+        }
 
+        // 3. 确认非空后再创建流，try-with-resources 自动关闭
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
@@ -47,37 +49,7 @@ public class FileUtil {
                     continue; // 跳过格式不对的行
                 }
 
-                String wordText = parts[0].trim();
-                String posAndMeaning = parts[1].trim();
-
-                // 提取词性和释义
-                String partOfSpeech = "";
-                String meaning = posAndMeaning;
-
-                // 尝试识别常见词性前缀
-                if (posAndMeaning.length() > 2) {
-                    String prefix = posAndMeaning.substring(0, Math.min(5, posAndMeaning.length()));
-                    if (prefix.startsWith("n.") || prefix.startsWith("v.")
-                            || prefix.startsWith("adj.") || prefix.startsWith("adv.")
-                            || prefix.startsWith("prep.") || prefix.startsWith("conj.")
-                            || prefix.startsWith("pron.") || prefix.startsWith("num.")) {
-                        int firstSpace = posAndMeaning.indexOf(" ");
-                        if (firstSpace > 0) {
-                            partOfSpeech = posAndMeaning.substring(0, firstSpace).trim();
-                            meaning = posAndMeaning.substring(firstSpace).trim();
-                        }
-                    }
-                }
-
-                // 构建单词对象
-                Word word = new Word(
-                        wordText,
-                        "", // 音标留空
-                        partOfSpeech,
-                        meaning,
-                        "", // 英文例句留空
-                        ""  // 中文例句留空
-                );
+                Word word = getWord(parts);
                 wordList.add(word);
             }
 
@@ -89,8 +61,45 @@ public class FileUtil {
 
         return wordList;
     }
+
+    private static Word getWord(String[] parts) {
+        String wordText = parts[0].trim();
+        String posAndMeaning = parts[1].trim();
+
+        // 提取词性和释义
+        String partOfSpeech = "";
+        String meaning = posAndMeaning;
+
+        // 尝试识别常见词性前缀
+        if (posAndMeaning.length() > 2) {
+            String prefix = posAndMeaning.substring(0, Math.min(5, posAndMeaning.length()));
+            if (prefix.startsWith("n.") || prefix.startsWith("v.")
+                    || prefix.startsWith("adj.") || prefix.startsWith("adv.")
+                    || prefix.startsWith("prep.") || prefix.startsWith("conj.")
+                    || prefix.startsWith("pron.") || prefix.startsWith("num.")) {
+                int firstSpace = posAndMeaning.indexOf(" ");
+                if (firstSpace > 0) {
+                    partOfSpeech = posAndMeaning.substring(0, firstSpace).trim();
+                    meaning = posAndMeaning.substring(firstSpace).trim();
+                }
+            }
+        }
+
+        // 构建单词对象
+        Word word = new Word(
+                wordText,
+                "", // 音标留空
+                partOfSpeech,
+                meaning,
+                "", // 英文例句留空
+                ""  // 中文例句留空
+        );
+        return word;
+    }
+
     /**
      * 读取文件内容
+     *
      * @param filePath 文件路径
      * @return 文件内容字符串，文件不存在/读取失败返回空字符串
      */
@@ -99,9 +108,13 @@ public class FileUtil {
         // 文件不存在，先创建空文件
         if (!file.exists()) {
             try {
-                file.createNewFile();
+                // 修复【忽略createNewFile返回值】警告，接收并处理结果
+                boolean created = file.createNewFile();
+                if (!created) {
+                    System.out.println("⚠️ 文件已存在：" + filePath);
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("❌ 文件创建失败：" + e.getMessage());
                 return "";
             }
         }
@@ -113,26 +126,28 @@ public class FileUtil {
                 sb.append(line).append("\n");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("❌ 文件读取失败：" + e.getMessage());
         }
         return sb.toString();
     }
 
     /**
      * 写入内容到文件
+     *
      * @param filePath 文件路径
-     * @param content 要写入的内容
+     * @param content  要写入的内容
      */
     public static void writeFile(String filePath, String content) {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), StandardCharsets.UTF_8))) {
             bw.write(content);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("❌ 文件写入失败：" + e.getMessage());
         }
     }
 
     /**
      * 解析文本内容为单词列表
+     *
      * @param content 词库文本内容，一行一个单词，制表符分隔
      * @return 解析后的单词列表
      */
@@ -161,6 +176,7 @@ public class FileUtil {
         }
         return wordList;
     }
+
     /**
      * 保存已学单词数量到本地（零报错，自动创建目录）
      */

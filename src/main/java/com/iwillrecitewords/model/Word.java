@@ -4,16 +4,16 @@ import java.util.Objects;
 
 /**
  * 单词实体类：包含单词属性与业务行为，告别贫血模型
+ *
+ * @param word         私有属性，封装数据，禁止外部直接修改 单词（不可变，构造后不能修改）
+ * @param phonetic     音标
+ * @param partOfSpeech 词性
+ * @param meaning      释义
+ * @param exampleEn    英文例句
+ * @param exampleCn    中文例句
  */
-public class Word {
-    // 私有属性，封装数据，禁止外部直接修改
-    private final String word;        // 单词（不可变，构造后不能修改）
-    private final String phonetic;    // 音标
-    private final String partOfSpeech;// 词性
-    private final String meaning;     // 释义
-    private final String exampleEn;   // 英文例句
-    private final String exampleCn;   // 中文例句
-
+public record Word(String word, String phonetic, String partOfSpeech, String meaning, String exampleEn,
+                   String exampleCn) {
     // 全参构造函数，创建时必须传入完整数据
     public Word(String word, String phonetic, String partOfSpeech, String meaning, String exampleEn, String exampleCn) {
         // 构造时数据校验，保证数据合法性
@@ -26,6 +26,7 @@ public class Word {
     }
 
     // ====================== 核心业务行为方法 ======================
+
     /**
      * 验证单词数据是否有效
      */
@@ -82,31 +83,6 @@ public class Word {
     @Override
     public int hashCode() {
         return Objects.hash(word);
-    }
-
-    // ====================== 仅提供getter，不提供setter，保证数据不可变（线程安全） ======================
-    public String getWord() {
-        return word;
-    }
-
-    public String getPhonetic() {
-        return phonetic;
-    }
-
-    public String getPartOfSpeech() {
-        return partOfSpeech;
-    }
-
-    public String getMeaning() {
-        return meaning;
-    }
-
-    public String getExampleEn() {
-        return exampleEn;
-    }
-
-    public String getExampleCn() {
-        return exampleCn;
     }
 
     @Override

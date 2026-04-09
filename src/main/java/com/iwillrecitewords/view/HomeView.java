@@ -132,10 +132,10 @@ public class HomeView extends BaseView {
         Button signInBtn = (Button) scene.lookup("#signInBtn");
         signInBtn.setOnAction(e -> controller.handleSignInClick());
 
-        Button learnBtn = (Button) ((StackPane) scene.lookup("#learnCard")).getUserData();
+        Button learnBtn = (Button) scene.lookup("#learnCard").getUserData();
         learnBtn.setOnAction(e -> switchTo(new LearnView(stage)));
 
-        Button reviewBtn = (Button) ((StackPane) scene.lookup("#reviewCard")).getUserData();
+        Button reviewBtn = (Button) scene.lookup("#reviewCard").getUserData();
         reviewBtn.setOnAction(e -> controller.handleReviewClick());
 
         Label bookNav = (Label) scene.lookup("#bookNav");

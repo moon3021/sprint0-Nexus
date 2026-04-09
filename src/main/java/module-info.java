@@ -1,12 +1,16 @@
 module com.iwillrecitewords {
     requires javafx.controls;
     requires javafx.fxml;
-    opens com.iwillrecitewords to javafx.graphics;
-    // 开放页面包给FXML（如果后续用FXML）
+    requires javafx.graphics;
+
+    opens com.iwillrecitewords to javafx.fxml;
     opens com.iwillrecitewords.view to javafx.fxml;
-    // 导出包
     exports com.iwillrecitewords;
     exports com.iwillrecitewords.view;
-    exports com.iwillrecitewords.service;
+    exports com.iwillrecitewords.controller;
     exports com.iwillrecitewords.model;
+    exports com.iwillrecitewords.service;
+    exports com.iwillrecitewords.repository;
+    exports com.iwillrecitewords.util;
+    exports com.iwillrecitewords.strategy;
 }

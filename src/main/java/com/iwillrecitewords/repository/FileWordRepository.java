@@ -2,8 +2,9 @@ package com.iwillrecitewords.repository;
 
 import com.iwillrecitewords.model.Word;
 import com.iwillrecitewords.util.FileUtil;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileWordRepository implements WordRepository {
     private static final String WRONG_FILE = "wrong_words.txt";
@@ -25,9 +26,9 @@ public class FileWordRepository implements WordRepository {
             line = line.trim();
             if (line.isEmpty()) continue;
             String[] parts = line.split("\t");
-            String word = parts.length>0 ? parts[0] : "";
-            String pos = parts.length>2 ? parts[2] : "";
-            String mean = parts.length>3 ? parts[3] : "";
+            String word = parts.length > 0 ? parts[0] : "";
+            String pos = parts.length > 2 ? parts[2] : "";
+            String mean = parts.length > 3 ? parts[3] : "";
             list.add(new Word(word, "", pos, mean, "", ""));
         }
         return list;
@@ -38,9 +39,9 @@ public class FileWordRepository implements WordRepository {
     public void saveWrongWords(List<Word> wrongWords) {
         StringBuilder sb = new StringBuilder();
         for (Word w : wrongWords) {
-            sb.append(w.getWord()).append("\t\t")
-                    .append(w.getPartOfSpeech()).append("\t")
-                    .append(w.getMeaning()).append("\t\t\n");
+            sb.append(w.word()).append("\t\t")
+                    .append(w.partOfSpeech()).append("\t")
+                    .append(w.meaning()).append("\t\t\n");
         }
         FileUtil.writeFile(WRONG_FILE, sb.toString());
     }

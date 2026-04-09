@@ -20,6 +20,7 @@ public abstract class BaseView {
     }
 
     protected abstract Scene initUI();
+
     protected abstract void bindEvents();
 
     public void show() {

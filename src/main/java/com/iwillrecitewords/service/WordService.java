@@ -1,8 +1,8 @@
 package com.iwillrecitewords.service;
 
 import com.iwillrecitewords.model.Word;
-import com.iwillrecitewords.repository.WordRepository;
 import com.iwillrecitewords.repository.FileWordRepository;
+import com.iwillrecitewords.repository.WordRepository;
 
 import java.util.List;
 import java.util.Random;

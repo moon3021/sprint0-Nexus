@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 public class HomeController {
-    private HomeView view;
+    private final HomeView view;
 
     public HomeController(HomeView view) {
         this.view = view;
@@ -70,5 +70,6 @@ public class HomeController {
         });
     }
 
-    public void refreshStatData() {}
+    public void refreshStatData() {
+    }
 }

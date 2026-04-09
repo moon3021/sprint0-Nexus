@@ -1,8 +1,8 @@
 package com.iwillrecitewords.strategy;
 
 import com.iwillrecitewords.model.Word;
-import com.iwillrecitewords.repository.WordRepository;
 import com.iwillrecitewords.repository.FileWordRepository;
+import com.iwillrecitewords.repository.WordRepository;
 import com.iwillrecitewords.service.StudyStatService;
 
 import java.util.List;

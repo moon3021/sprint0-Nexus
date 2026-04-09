@@ -139,11 +139,11 @@ public class LearnView extends BaseView {
     public void updateWordUI(Word word) {
         if (word == null) return;
 
-        wordLabel.setText(word.getWord());
-        phoneticLabel.setText(word.hasPhonetic() ? word.getPhonetic() : "");
-        meaningLabel.setText(word.getPartOfSpeech() + " " + word.getMeaning());
-        exampleEnLabel.setText(word.getExampleEn());
-        exampleCnLabel.setText(word.getExampleCn());
+        wordLabel.setText(word.word());
+        phoneticLabel.setText(word.hasPhonetic() ? word.phonetic() : "");
+        meaningLabel.setText(word.partOfSpeech() + " " + word.meaning());
+        exampleEnLabel.setText(word.exampleEn());
+        exampleCnLabel.setText(word.exampleCn());
     }
 
     public void updateLearnedCountUI() {

@@ -1,8 +1,8 @@
 package com.iwillrecitewords;
 
 import com.iwillrecitewords.model.Word;
-import com.iwillrecitewords.service.WordService;
 import com.iwillrecitewords.service.StudyStatService;
+import com.iwillrecitewords.service.WordService;
 import com.iwillrecitewords.view.ConsoleView;
 
 /**
