@@ -1,12 +1,18 @@
 package com.iwillrecitewords.controller;
 
 import com.iwillrecitewords.MainUI;
+import com.iwillrecitewords.model.Word;
 import com.iwillrecitewords.view.HomeView;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+
+import java.util.List;
 
 /**
- * 主页面控制器：集中处理主页面的所有业务逻辑
+ * 主页面控制器：严格遵循MVP架构，仅调度业务逻辑
+ * Sprint3完成：词库管理+错词复习功能（弹窗实现，贴合项目原生设计）
  */
 public class HomeController {
     private HomeView view;
@@ -15,23 +21,15 @@ public class HomeController {
         this.view = view;
     }
 
-    /**
-     * 获取今日已学数量（给View调用）
-     */
     public int getLearnedCount() {
         return MainUI.STAT_SERVICE.getLearnedCount();
     }
 
-    /**
-     * 获取错词复习数量（给View调用）
-     */
     public int getReviewCount() {
         return MainUI.WRONG_WORD_SERVICE.getWrongWordCount();
     }
 
-    /**
-     * 处理签到按钮点击（业务逻辑）
-     */
+    // 签到功能（原有逻辑不变）
     public void handleSignInClick() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -42,49 +40,70 @@ public class HomeController {
         });
     }
 
-    /**
-     * 处理错词复习按钮点击（业务逻辑）
-     */
+    // ====================== Sprint3 完成：错词复习功能 ======================
     public void handleReviewClick() {
         Platform.runLater(() -> {
+            List<Word> wrongWords = MainUI.WRONG_WORD_SERVICE.getWrongWordList();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("功能开发中");
-            alert.setHeaderText("📖 错词复习功能");
-            alert.setContentText("该功能将在Sprint3上线，敬请期待！");
+            alert.setTitle("错词复习");
+            alert.setHeaderText("📖 我的错词列表");
+
+            TextArea textArea = new TextArea();
+            textArea.setEditable(false);
+            textArea.setPrefSize(600, 400);
+
+            StringBuilder content = new StringBuilder();
+            if (wrongWords.isEmpty()) {
+                content.append("太棒了！当前没有错词~");
+            } else {
+                for (Word word : wrongWords) {
+                    content.append(word.getWord()).append(" [").append(word.getPhonetic()).append("]\n");
+                    content.append("释义：").append(word.getMeaning()).append("\n\n");
+                }
+            }
+            textArea.setText(content.toString());
+
+            VBox vBox = new VBox(textArea);
+            alert.getDialogPane().setContent(vBox);
             alert.showAndWait();
         });
     }
 
-    /**
-     * 处理词库按钮点击（业务逻辑）
-     */
+    // ====================== Sprint3 完成：词库管理功能 ======================
     public void handleBookClick() {
         Platform.runLater(() -> {
+            List<Word> wordLibrary = MainUI.WORD_SERVICE.getWordLibrary();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("功能开发中");
-            alert.setHeaderText("📕 词库管理功能");
-            alert.setContentText("该功能将在Sprint3上线，敬请期待！");
+            alert.setTitle("词库管理");
+            alert.setHeaderText("📕 考研英语词库（共"+wordLibrary.size()+"个单词）");
+
+            TextArea textArea = new TextArea();
+            textArea.setEditable(false);
+            textArea.setPrefSize(600, 400);
+
+            StringBuilder content = new StringBuilder();
+            for (Word word : wordLibrary) {
+                content.append(word.getWord()).append(" [").append(word.getPhonetic()).append("]\n");
+                content.append("释义：").append(word.getMeaning()).append("\n\n");
+            }
+            textArea.setText(content.toString());
+
+            VBox vBox = new VBox(textArea);
+            alert.getDialogPane().setContent(vBox);
             alert.showAndWait();
         });
     }
 
-    /**
-     * 处理统计按钮点击（业务逻辑）
-     */
+    // 统计功能（保持开发中，不变）
     public void handleStatClick() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("功能开发中");
             alert.setHeaderText("📊 学习统计功能");
-            alert.setContentText("该功能将在Sprint3上线，敬请期待！");
+            alert.setContentText("该功能将在后续迭代上线！");
             alert.showAndWait();
         });
     }
 
-    /**
-     * 刷新统计数据（给View调用，后续扩展用）
-     */
-    public void refreshStatData() {
-        // 后续可以扩展：从文件重新加载统计数据
-    }
+    public void refreshStatData() {}
 }
