@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的错词本</title>
+    <style>
+        body { font-family: "Microsoft Yahei", sans-serif; max-width: 800px; margin: 30px auto; }
+        .word-item { padding: 10px; border-bottom: 1px solid #eee; }
+        .word { font-size: 20px; font-weight: bold; }
+        .meaning { color: #666; margin-left: 10px; }
+        .delete-btn { color: #ff4444; cursor: pointer; margin-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>📖 我的错词本</h1>
+<div id="wordList"></div>
+
+<script>
+    // 加载错词列表
+    function loadWrongWords() {
+        fetch("/wrong-word/list/1") // 这里用用户ID 1，可根据实际修改
+            .then(res => res.json())
+            .then(data => {
+                const listDom = document.getElementById("wordList");
+                listDom.innerHTML = "";
+                data.forEach(word => {
+                    const item = document.createElement("div");
+                    item.className = "word-item";
+                    item.innerHTML = `
+                            <span class="word">${word.word}</span>
+                            <span class="meaning">${word.meaning}</span>
+                            <span class="delete-btn" onclick="deleteWord(${word.id})">删除</span>
+                        `;
+                    listDom.appendChild(item);
+                });
+            });
+    }
+
+    // 删除错词
+    function deleteWord(id) {
+        fetch(`/wrong-word/delete/${id}`, { method: "DELETE" })
+            .then(res => res.text())
+            .then(msg => {
+                alert(msg);
+                loadWrongWords(); // 刷新列表
+            });
+    }
+
+    // 页面加载时自动加载错词
+    window.onload = loadWrongWords;
+</script>
+</body>
+</html>
