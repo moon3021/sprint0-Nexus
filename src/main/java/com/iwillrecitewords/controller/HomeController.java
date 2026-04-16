@@ -44,6 +44,8 @@ public class HomeController {
     public void handleReviewClick() {
         Platform.runLater(() -> {
             List<Word> wrongWords = MainUI.WRONG_WORD_SERVICE.getWrongWordList();
+            // 加日志，确认拿到的错词数
+            System.out.println("[HomeController] 错词复习弹窗，拿到错词数：" + wrongWords.size());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("错词复习");
             alert.setHeaderText("📖 我的错词列表");
