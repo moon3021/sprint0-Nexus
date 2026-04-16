@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: 我会背单词 API 契约
+  version: 1.0.0
+  description: Sprint3 前后端（服务层与展现层）接口法定依据
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /words:
+    get:
+      summary: 获取全量词库
+      responses:
+        '200':
+          description: 成功返回单词列表
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Word'
+  /words/wrong:
+    get:
+      summary: 获取错词列表
+      responses:
+        '200':
+          description: 成功返回错词列表
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Word'
+    post:
+      summary: 添加错词
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Word'
+      responses:
+        '201':
+          description: 错词添加成功
+    delete:
+      summary: 移除错词
+      parameters:
+        - name: wordName
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 错词移除成功
+  /stats:
+    get:
+      summary: 获取学习统计
+      responses:
+        '200':
+          description: 成功返回统计数据
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyStats'
+components:
+  schemas:
+    Word:
+      type: object
+      properties:
+        wordName:
+          type: string
+          example: revolt
+        phonetic:
+          type: string
+          example: /rɪˈvəʊlt/
+        definition:
+          type: string
+          example: n. 反抗;造反,起义 v. 起义;反抗
+    StudyStats:
+      type: object
+      properties:
+        totalLearned:
+          type: integer
+          example: 44
+        masteredCount:
+          type: integer
+          example: 42
+        wrongCount:
+          type: integer
+          example: 2
