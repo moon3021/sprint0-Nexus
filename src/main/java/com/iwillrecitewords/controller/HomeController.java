@@ -75,7 +75,7 @@ public class HomeController {
             List<Word> wordLibrary = MainUI.WORD_SERVICE.getWordLibrary();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("词库管理");
-            alert.setHeaderText("📕 考研英语词库");
+            alert.setHeaderText("📕 考研英语词库（共"+wordLibrary.size()+"个单词）");
 
             TextArea textArea = new TextArea();
             textArea.setEditable(false);
