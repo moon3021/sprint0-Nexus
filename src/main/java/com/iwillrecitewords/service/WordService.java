@@ -79,4 +79,8 @@ public class WordService {
     public boolean hasNextWord() {
         return !wordLibrary.isEmpty() && currentIndex < wordLibrary.size() - 1;
     }
+    // 新增：获取全量词库列表，供词库管理页面使用
+    public List<Word> getWordLibrary() {
+        return wordLibrary;
+    }
 }
