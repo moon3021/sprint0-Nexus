@@ -26,8 +26,22 @@ public class WrongWordService {
         return instance;
     }
 
-    // 添加错词（直接接收Word类，用getter获取字段）
+    // 🔥 核心修复：添加错词（直接接收Word类，用getter获取字段）
     public String addWrongWord(Word word) {
+        // 前置校验1：单词无效直接跳过
+        if (word == null || !word.isValid()) {
+            return "单词无效，添加失败";
+        }
+
+        // 前置校验2：去重判断（核心修复）
+        // 遍历当前用户的错词列表，对比单词内容，已存在则直接返回，不添加
+        for (WrongWord existing : wrongWordList) {
+            if (existing.getUserId().equals(1L) && existing.getWord().equals(word.getWord())) {
+                return "单词已在错词本中，无需重复添加";
+            }
+        }
+
+        // 只有通过校验，才真正添加
         WrongWord wrongWord = new WrongWord(
                 idCounter++,
                 1L, // 默认用户ID=1
