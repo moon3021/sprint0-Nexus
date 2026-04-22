@@ -13,7 +13,39 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>22.0.2</javafx.version>
+        <junit.version>5.9.2</junit.version>
+        <maven.surefire.version>3.1.2</maven.surefire.version>
     </properties>
+
+    <!-- 新增：阿里云Maven镜像仓库，解决国内下载依赖失败问题 -->
+    <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <name>阿里云公共仓库</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <!-- 新增：阿里云插件仓库，解决插件下载失败问题 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyunmaven-plugin</id>
+            <name>阿里云插件仓库</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <!-- JavaFX 核心依赖 -->
@@ -26,6 +58,20 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- JUnit 5 单元测试核心依赖 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -57,6 +103,12 @@
                 <configuration>
                     <mainClass>com.iwillrecitewords.MainUI</mainClass>
                 </configuration>
+            </plugin>
+            <!-- Maven 测试插件，用于CI流水线自动执行单元测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
             </plugin>
         </plugins>
     </build>
