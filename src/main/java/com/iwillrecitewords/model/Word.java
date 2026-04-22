@@ -31,4 +31,19 @@ public class Word {
     public String getMeaning() { return meaning; }
     public String getExampleEn() { return exampleEn; }
     public String getExampleCn() { return exampleCn; }
+
+    // 🔥 新增：重写equals和hashCode，实现按单词内容去重
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Word word1 = (Word) o;
+        // 以单词内容作为唯一判断标准
+        return word.equals(word1.word);
+    }
+
+    @Override
+    public int hashCode() {
+        return word.hashCode();
+    }
 }
