@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.sprint0.nexus.service.WordServiceTest" time="0.06" tests="7" errors="7" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.sprint0.nexus.service.WordServiceTest" time="0.62" tests="23" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.class.path" value="C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\test-classes;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6.jar;"/>
+    <property name="java.class.path" value="C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\test-classes;C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\classes;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6-win.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,14 +15,13 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CN"/>
     <property name="sun.boot.library.path" value="D:\JDK\jdk-17\bin"/>
-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\guo_x\AppData\Local\Temp\surefire2359296854458052405 2026-04-30T09-11-03_009-jvmRun1 surefire3332319319121391500tmp surefire_04342720689224501955tmp"/>
+    <property name="sun.java.command" value="C:\Users\guo_x\AppData\Local\Temp\surefire9131482010159021318\surefirebooter8263933195978510194.jar C:\Users\guo_x\AppData\Local\Temp\surefire9131482010159021318 2026-04-30T11-36-24_427-jvmRun1 surefire1086649461315183189tmp surefire_09365754516163651081tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\test-classes;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\test-classes;C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\classes;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6-win.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\guo_x"/>
     <property name="user.language" value="zh"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="jdk.module.path" value="C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\classes;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6-win.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6-win.jar"/>
     <property name="java.version.date" value="2025-04-15"/>
     <property name="java.home" value="D:\JDK\jdk-17"/>
     <property name="file.separator" value="\"/>
@@ -31,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\guo_x\.m2\repository\org\apache\maven\surefire\surefire-booter\2.22.2\surefire-booter-2.22.2.jar;C:\Users\guo_x\.m2\repository\org\apache\maven\surefire\surefire-api\2.22.2\surefire-api-2.22.2.jar;C:\Users\guo_x\.m2\repository\org\apache\maven\surefire\surefire-logger-api\2.22.2\surefire-logger-api-2.22.2.jar;C:\Users\guo_x\Desktop\sprint0-Nexus-main\sprint0-Nexus-main\target\test-classes;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-controls\17.0.6\javafx-controls-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-graphics\17.0.6\javafx-graphics-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-base\17.0.6\javafx-base-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\openjfx\javafx-fxml\17.0.6\javafx-fxml-17.0.6.jar;C:\Users\guo_x\.m2\repository\org\apache\maven\surefire\surefire-junit-platform\2.22.2\surefire-junit-platform-2.22.2.jar;C:\Users\guo_x\.m2\repository\org\junit\platform\junit-platform-launcher\1.3.1\junit-platform-launcher-1.3.1.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\guo_x\AppData\Local\Temp\surefire9131482010159021318\surefirebooter8263933195978510194.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.15+9-LTS-241"/>
@@ -51,39 +50,34 @@
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="GBK"/>
     <property name="java.library.path" value="D:\JDK\jdk-17\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\JDK\jdk-17\bin;D:\VMware Workstation Pro\VMware-workstation-full-15.0.2-10952284\bin\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;D:\Git\cmd;C:\maven\apache-maven-3.9.15\bin;D:\Python\python-3.13.7\Scripts\;D:\Python\python-3.13.7\;C:\Users\guo_x\AppData\Local\Microsoft\WindowsApps;D:\IntelliJ IDEA\IntelliJ IDEA Community Edition 2025.2.3\bin;D:\Pycharm\PyCharm 2025.2.3\bin;D:\DevEco Studio 6.0.1 Release\DevEco Studio\bin;;C:\Users\guo_x\AppData\Local\Programs\Microsoft VS Code\bin;D:\IDEA\idea-2024.1.7\IntelliJ IDEA 2024.1.7\bin;;."/>
-    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="17.0.15+9-LTS-241"/>
     <property name="java.specification.maintenance.version" value="1"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testGetRandomWord_ReturnsValidWord" classname="com.sprint0.nexus.service.WordServiceTest" time="0.011">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
-  <testcase name="testGetTotalWordCount_ReturnsPositiveNumber" classname="com.sprint0.nexus.service.WordServiceTest" time="0">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
-  <testcase name="testGetRandomWord_Randomness[1]" classname="com.sprint0.nexus.service.WordServiceTest" time="0">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
-  <testcase name="testGetRandomWord_Randomness[2]" classname="com.sprint0.nexus.service.WordServiceTest" time="0">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
-  <testcase name="testGetRandomWord_Randomness[3]" classname="com.sprint0.nexus.service.WordServiceTest" time="0">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
-  <testcase name="testGetRandomWord_Randomness[4]" classname="com.sprint0.nexus.service.WordServiceTest" time="0">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
-  <testcase name="testGetRandomWord_Randomness[5]" classname="com.sprint0.nexus.service.WordServiceTest" time="0">
-    <error message="Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not &quot;opens com.sprint0.nexus.service&quot; to unnamed module @2473d930" type="java.lang.reflect.InaccessibleObjectException">java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-</error>
-  </testcase>
+  <testcase name="testNextWord_ReturnsNextWord" classname="com.sprint0.nexus.service.WordServiceTest" time="0.07"/>
+  <testcase name="testNextWord_WhenWordsLeft_ReturnsNonNull" classname="com.sprint0.nexus.service.WordServiceTest" time="0.052"/>
+  <testcase name="testGetCurrentWord_ReturnsSameWord_WhenNotMoved" classname="com.sprint0.nexus.service.WordServiceTest" time="0.052"/>
+  <testcase name="testGetCurrentWord_ReturnsWord" classname="com.sprint0.nexus.service.WordServiceTest" time="0.038"/>
+  <testcase name="testGetCurrentWord_AfterReset_ReturnsFirstWord" classname="com.sprint0.nexus.service.WordServiceTest" time="0.031"/>
+  <testcase name="testHasNextWord_WhenWordsExist_ReturnsTrue" classname="com.sprint0.nexus.service.WordServiceTest" time="0.032"/>
+  <testcase name="testGetRandomWord_ReturnsValidWord" classname="com.sprint0.nexus.service.WordServiceTest" time="0.029"/>
+  <testcase name="testNextWord_SequentialMove_ReturnsDifferentWords" classname="com.sprint0.nexus.service.WordServiceTest" time="0.019"/>
+  <testcase name="testHasNextWord_ReturnsCorrectValue" classname="com.sprint0.nexus.service.WordServiceTest" time="0.024"/>
+  <testcase name="testConstructor_LoadsWordLibrary" classname="com.sprint0.nexus.service.WordServiceTest" time="0.035"/>
+  <testcase name="testGetTotalWordCount_ReturnsPositiveNumber" classname="com.sprint0.nexus.service.WordServiceTest" time="0.019"/>
+  <testcase name="testGetRandomWord_Randomness[1]" classname="com.sprint0.nexus.service.WordServiceTest" time="0.018"/>
+  <testcase name="testGetRandomWord_Randomness[2]" classname="com.sprint0.nexus.service.WordServiceTest" time="0.017"/>
+  <testcase name="testGetRandomWord_Randomness[3]" classname="com.sprint0.nexus.service.WordServiceTest" time="0.018"/>
+  <testcase name="testGetRandomWord_Randomness[4]" classname="com.sprint0.nexus.service.WordServiceTest" time="0.019"/>
+  <testcase name="testGetRandomWord_Randomness[5]" classname="com.sprint0.nexus.service.WordServiceTest" time="0.024"/>
+  <testcase name="testResetCurrentIndex_ResetsToZero" classname="com.sprint0.nexus.service.WordServiceTest" time="0.014"/>
+  <testcase name="testGetTotalWordCount_MatchesLibrarySize" classname="com.sprint0.nexus.service.WordServiceTest" time="0.014"/>
+  <testcase name="testGetRandomWord_AlwaysReturnsCompleteWord" classname="com.sprint0.nexus.service.WordServiceTest" time="0.014"/>
+  <testcase name="testSequenceOrder_AfterReset_StartsFromBeginning" classname="com.sprint0.nexus.service.WordServiceTest" time="0.014"/>
+  <testcase name="testGetWordLibrary_ReturnsNonNullList" classname="com.sprint0.nexus.service.WordServiceTest" time="0.014"/>
+  <testcase name="testNextWord_WhenAtEnd_ReturnsNull" classname="com.sprint0.nexus.service.WordServiceTest" time="0.016"/>
+  <testcase name="testResetCurrentIndex_WhenAlreadyAtZero_WorksFine" classname="com.sprint0.nexus.service.WordServiceTest" time="0.013"/>
 </testsuite>

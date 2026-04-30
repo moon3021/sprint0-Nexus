@@ -1,13 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sprint0.nexus.service.WrongWordServiceTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in com.sprint0.nexus.service.WrongWordServiceTest
-testGetWrongWordList_ReturnsList  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WrongWordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testAddWrongWord_WithNullWord_DoesNotAdd  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WrongWordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testAddWrongWord_WithValidWord_AddsSuccessfully  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WrongWordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.187 s - in com.sprint0.nexus.service.WrongWordServiceTest

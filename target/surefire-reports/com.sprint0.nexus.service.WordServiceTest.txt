@@ -1,25 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sprint0.nexus.service.WordServiceTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 7, Skipped: 0, Time elapsed: 0.06 s <<< FAILURE! - in com.sprint0.nexus.service.WordServiceTest
-testGetRandomWord_ReturnsValidWord  Time elapsed: 0.011 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testGetTotalWordCount_ReturnsPositiveNumber  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testGetRandomWord_Randomness[1]  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testGetRandomWord_Randomness[2]  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testGetRandomWord_Randomness[3]  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testGetRandomWord_Randomness[4]  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
-testGetRandomWord_Randomness[5]  Time elapsed: 0 s  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make com.sprint0.nexus.service.WordServiceTest() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.service" to unnamed module @2473d930
-
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.62 s - in com.sprint0.nexus.service.WordServiceTest

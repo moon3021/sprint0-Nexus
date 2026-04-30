@@ -6,7 +6,6 @@ com\sprint0\nexus\statistics\TodayOverview.class
 com\iwillrecitewords\view\HomeView.class
 com\iwillrecitewords\service\WordService.class
 com\iwillrecitewords\service\StudyStatService.class
-module-info.class
 com\sprint0\nexus\statistics\LearningRecord.class
 com\sprint0\nexus\statistics\LearningStatisticsService.class
 com\iwillrecitewords\service\WrongWordService.class

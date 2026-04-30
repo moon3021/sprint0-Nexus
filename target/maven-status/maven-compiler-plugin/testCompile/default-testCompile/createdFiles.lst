@@ -1,3 +1,4 @@
 com\sprint0\nexus\service\WrongWordServiceTest.class
 com\sprint0\nexus\statistics\LearningStatisticsServiceTest.class
+com\sprint0\nexus\service\StudyStatServiceTest.class
 com\sprint0\nexus\service\WordServiceTest.class
