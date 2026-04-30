@@ -74,11 +74,11 @@ public class WrongWordService {
                 // 用Word的全参构造，通过getter获取错词字段
                 wordList.add(new Word(
                         wrongWord.getWord(),
-                        wrongWord.getMeaning(),
-                        "", // 音标
-                        "", // 例句
-                        "", // 短语
-                        ""  // 词根词缀
+                        "", // phonetic（错词表不保存音标）
+                        "", // partOfSpeech（错词表不保存词性）
+                        wrongWord.getMeaning(), // 正确的meaning位置
+                        "",
+                        ""
                 ));
             }
         }
