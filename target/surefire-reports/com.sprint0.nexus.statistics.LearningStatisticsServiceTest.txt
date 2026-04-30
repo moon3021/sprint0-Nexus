@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: com.sprint0.nexus.statistics.LearningStatisticsServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in com.sprint0.nexus.statistics.LearningStatisticsServiceTest
+testGetTodayOverview  Time elapsed: 0 s  <<< ERROR!
+java.lang.reflect.InaccessibleObjectException: Unable to make void com.sprint0.nexus.statistics.LearningStatisticsServiceTest.setUp() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.statistics" to unnamed module @2473d930
+
+testGetWeeklyTrend  Time elapsed: 0 s  <<< ERROR!
+java.lang.reflect.InaccessibleObjectException: Unable to make void com.sprint0.nexus.statistics.LearningStatisticsServiceTest.setUp() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.statistics" to unnamed module @2473d930
+
+testGetWordTypeStatistics  Time elapsed: 0 s  <<< ERROR!
+java.lang.reflect.InaccessibleObjectException: Unable to make void com.sprint0.nexus.statistics.LearningStatisticsServiceTest.setUp() accessible: module com.iwillrecitewords does not "opens com.sprint0.nexus.statistics" to unnamed module @2473d930
+
