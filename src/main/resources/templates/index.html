@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我会背单词 - 考研英语</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        .word-card {
+            margin: 30px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+        }
+        .word {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .phonetic {
+            font-size: 24px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .meaning {
+            font-size: 28px;
+            margin-top: 20px;
+            display: none;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-know {
+            background-color: #10b981;
+            color: white;
+        }
+        .btn-not-know {
+            background-color: #ef4444;
+            color: white;
+        }
+        .btn-show {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .nav {
+            margin-top: 30px;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>考研英语背单词</h1>
+    <div class="word-card">
+        <div class="word" id="word">加载中...</div>
+        <div class="phonetic" id="phonetic"></div>
+        <button class="btn-show" onclick="showMeaning()">显示释义</button>
+        <div class="meaning" id="meaning"></div>
+    </div>
+    <div class="buttons">
+        <button class="btn-know" onclick="knowWord()">认识</button>
+        <button class="btn-not-know" onclick="notKnowWord()">不认识</button>
+    </div>
+    <div class="nav">
+        <a href="/wrong-words">查看错词本 →</a>
+    </div>
+</div>
+
+<script>
+    let currentWord = null;
+
+    // 页面加载时获取第一个单词
+    window.onload = function() {
+        getNextWord();
+    };
+
+    // 获取下一个随机单词
+    function getNextWord() {
+        fetch('/api/word/random')
+            .then(response => response.json())
+            .then(word => {
+                currentWord = word;
+                document.getElementById('word').textContent = word.word;
+                document.getElementById('phonetic').textContent = word.phonetic;
+                document.getElementById('meaning').textContent = word.meaning;
+                document.getElementById('meaning').style.display = 'none';
+            });
+    }
+
+    // 显示释义
+    function showMeaning() {
+        document.getElementById('meaning').style.display = 'block';
+    }
+
+    // 认识单词
+    function knowWord() {
+        getNextWord();
+    }
+
+    // 不认识单词，添加到错词本
+    function notKnowWord() {
+        fetch('/api/wrong-word/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currentWord)
+        }).then(() => {
+            getNextWord();
+        });
+    }
+</script>
+</body>
+</html>

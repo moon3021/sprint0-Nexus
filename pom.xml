@@ -4,9 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 新增：Spring Boot 父依赖（放在最前面） -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.iwillrecitewords</groupId>
     <artifactId>IWillReciteWords</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>IWillReciteWords</name>
+    <description>考研英语背单词应用（桌面端+Web端）</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -17,7 +27,7 @@
         <maven.surefire.version>3.1.2</maven.surefire.version>
     </properties>
 
-    <!-- 新增：阿里云Maven镜像仓库，解决国内下载依赖失败问题 -->
+    <!-- 保留：阿里云Maven镜像仓库 -->
     <repositories>
         <repository>
             <id>aliyunmaven</id>
@@ -32,7 +42,7 @@
         </repository>
     </repositories>
 
-    <!-- 新增：阿里云插件仓库，解决插件下载失败问题 -->
+    <!-- 保留：阿里云插件仓库 -->
     <pluginRepositories>
         <pluginRepository>
             <id>aliyunmaven-plugin</id>
@@ -48,7 +58,26 @@
     </pluginRepositories>
 
     <dependencies>
-        <!-- JavaFX 核心依赖 -->
+        <!-- 新增：Spring Boot Web核心依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 新增：Thymeleaf模板引擎 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- 新增：API集成测试工具 -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 保留：JavaFX 核心依赖 -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -60,7 +89,7 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- JUnit 5 单元测试核心依赖 -->
+        <!-- 保留：JUnit 5 单元测试核心依赖 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -73,20 +102,31 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- 保留：Spring Boot测试依赖（自动包含JUnit） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
-        <!-- 配置资源目录，确保词库文件能被读取 -->
+        <!-- 保留：配置资源目录，确保词库文件能被读取 -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>**/*.txt</include>
                     <include>**/*.png</include>
+                    <include>**/*.html</include> <!-- 新增：包含HTML页面 -->
+                    <include>**/*.css</include>  <!-- 新增：包含CSS样式 -->
+                    <include>**/*.js</include>   <!-- 新增：包含JS脚本 -->
                 </includes>
             </resource>
         </resources>
         <plugins>
+            <!-- 保留：Maven编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -96,6 +136,8 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
+
+            <!-- 保留：JavaFX打包插件 -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -104,12 +146,15 @@
                     <mainClass>com.iwillrecitewords.MainUI</mainClass>
                 </configuration>
             </plugin>
-            <!-- Maven 测试插件，用于CI流水线自动执行单元测试 -->
+
+            <!-- 保留：Maven测试插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
             </plugin>
+
+            <!-- 保留：JaCoCo覆盖率插件 -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -122,6 +167,12 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- 新增：Spring Boot打包插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

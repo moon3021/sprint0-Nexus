@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错词本 - 我会背单词</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .word-info {
+            flex: 1;
+        }
+        .word {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .meaning {
+            font-size: 18px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .btn-delete {
+            padding: 8px 16px;
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-clear {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="/">← 返回背单词</a>
+    </div>
+    <h1>我的错词本</h1>
+    <div id="word-list"></div>
+    <button class="btn-clear" onclick="clearWrongWords()">清空错词本</button>
+</div>
+
+<script>
+    // 页面加载时获取错词列表
+    window.onload = function() {
+        loadWrongWords();
+    };
+
+    // 加载错词列表
+    function loadWrongWords() {
+        fetch('/api/wrong-word/list')
+            .then(response => response.json())
+            .then(words => {
+                const listElement = document.getElementById('word-list');
+                if (words.length === 0) {
+                    listElement.innerHTML = '<div class="empty">暂无错词，继续加油！</div>';
+                    return;
+                }
+
+                let html = '';
+                words.forEach((word, index) => {
+                    html += `
+                            <div class="word-item">
+                                <div class="word-info">
+                                    <div class="word">${word.word}</div>
+                                    <div class="meaning">${word.meaning}</div>
+                                </div>
+                                <button class="btn-delete" onclick="deleteWrongWord(${index + 1})">删除</button>
+                            </div>
+                        `;
+                });
+                listElement.innerHTML = html;
+            });
+    }
+
+    // 删除错词
+    function deleteWrongWord(id) {
+        fetch(`/api/wrong-word/delete/${id}`, {
+            method: 'DELETE'
+        }).then(() => {
+            loadWrongWords();
+        });
+    }
+
+    // 清空错词本
+    function clearWrongWords() {
+        if (confirm('确定要清空所有错词吗？')) {
+            fetch('/api/wrong-word/clear', {
+                method: 'DELETE'
+            }).then(() => {
+                loadWrongWords();
+            });
+        }
+    }
+</script>
+</body>
+</html>
